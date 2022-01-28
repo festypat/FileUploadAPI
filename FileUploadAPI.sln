@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{5AD8DC51-C416-44E5-AAB2-035EFD45E00E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation Layer", "Presentation Layer", "{5D5872AE-9D99-484E-8262-29FB8D6E0FEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain Layer", "Domain Layer", "{B970B736-C4DD-49A7-963B-F83DD97ED8C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Layer", "Data Layer", "{0D3BF931-1647-4367-8032-3B83B5487017}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business Layer", "Business Layer", "{04772825-D222-43E8-BF48-EA836E4D0B3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helper Layer", "Helper Layer", "{E8351A6B-0F98-48F4-A7D2-80770C4160A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extenstion Layer", "Extenstion Layer", "{0BDDD965-4C72-4DBA-848F-D04E23343ADB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUpload.ApplicationCore", "Src\Business Layer\ApplicationCore\FileUpload.ApplicationCore\FileUpload.ApplicationCore.csproj", "{59E24F8E-856E-4EE2-A969-EB96CABC0FB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUpload.Persistence", "Src\Data Layer\Persistence\FileUpload.Persistence\FileUpload.Persistence.csproj", "{7CAE9FAA-4C39-476F-900D-4FCEB541C66F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUpload.Helper", "Src\Helper Layer\FileUpload.Helper\FileUpload.Helper.csproj", "{197D8A60-6C71-484F-82F7-8025AA62ECF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUpload.Domain", "Src\Domain Layer\Domain\FileUpload.Domain\FileUpload.Domain.csproj", "{A0E04ED4-6062-4B4A-8E33-5780CD2D2AE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUpload.Extensions", "Src\Extension Layer\Extensions\FileUpload.Extensions\FileUpload.Extensions.csproj", "{34077F55-6A62-47F2-8606-7E328B4ADA5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUpload.API", "Src\Presentation Layer\API\FileUpload.API\FileUpload.API.csproj", "{9CF5BCE1-5145-4D6B-8F3A-270D9E487F6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59E24F8E-856E-4EE2-A969-EB96CABC0FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E24F8E-856E-4EE2-A969-EB96CABC0FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E24F8E-856E-4EE2-A969-EB96CABC0FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E24F8E-856E-4EE2-A969-EB96CABC0FB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CAE9FAA-4C39-476F-900D-4FCEB541C66F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CAE9FAA-4C39-476F-900D-4FCEB541C66F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CAE9FAA-4C39-476F-900D-4FCEB541C66F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CAE9FAA-4C39-476F-900D-4FCEB541C66F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{197D8A60-6C71-484F-82F7-8025AA62ECF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{197D8A60-6C71-484F-82F7-8025AA62ECF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{197D8A60-6C71-484F-82F7-8025AA62ECF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{197D8A60-6C71-484F-82F7-8025AA62ECF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0E04ED4-6062-4B4A-8E33-5780CD2D2AE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E04ED4-6062-4B4A-8E33-5780CD2D2AE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0E04ED4-6062-4B4A-8E33-5780CD2D2AE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0E04ED4-6062-4B4A-8E33-5780CD2D2AE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34077F55-6A62-47F2-8606-7E328B4ADA5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34077F55-6A62-47F2-8606-7E328B4ADA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34077F55-6A62-47F2-8606-7E328B4ADA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34077F55-6A62-47F2-8606-7E328B4ADA5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CF5BCE1-5145-4D6B-8F3A-270D9E487F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CF5BCE1-5145-4D6B-8F3A-270D9E487F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CF5BCE1-5145-4D6B-8F3A-270D9E487F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CF5BCE1-5145-4D6B-8F3A-270D9E487F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5D5872AE-9D99-484E-8262-29FB8D6E0FEF} = {5AD8DC51-C416-44E5-AAB2-035EFD45E00E}
+		{B970B736-C4DD-49A7-963B-F83DD97ED8C2} = {5AD8DC51-C416-44E5-AAB2-035EFD45E00E}
+		{0D3BF931-1647-4367-8032-3B83B5487017} = {5AD8DC51-C416-44E5-AAB2-035EFD45E00E}
+		{04772825-D222-43E8-BF48-EA836E4D0B3C} = {5AD8DC51-C416-44E5-AAB2-035EFD45E00E}
+		{E8351A6B-0F98-48F4-A7D2-80770C4160A0} = {5AD8DC51-C416-44E5-AAB2-035EFD45E00E}
+		{0BDDD965-4C72-4DBA-848F-D04E23343ADB} = {5AD8DC51-C416-44E5-AAB2-035EFD45E00E}
+		{59E24F8E-856E-4EE2-A969-EB96CABC0FB6} = {04772825-D222-43E8-BF48-EA836E4D0B3C}
+		{7CAE9FAA-4C39-476F-900D-4FCEB541C66F} = {0D3BF931-1647-4367-8032-3B83B5487017}
+		{197D8A60-6C71-484F-82F7-8025AA62ECF8} = {E8351A6B-0F98-48F4-A7D2-80770C4160A0}
+		{A0E04ED4-6062-4B4A-8E33-5780CD2D2AE9} = {B970B736-C4DD-49A7-963B-F83DD97ED8C2}
+		{34077F55-6A62-47F2-8606-7E328B4ADA5C} = {0BDDD965-4C72-4DBA-848F-D04E23343ADB}
+		{9CF5BCE1-5145-4D6B-8F3A-270D9E487F6B} = {5D5872AE-9D99-484E-8262-29FB8D6E0FEF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E01F2618-81D7-417C-864F-6C9905BBE70E}
+	EndGlobalSection
+EndGlobal
