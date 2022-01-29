@@ -77,7 +77,7 @@ namespace FileUpload.Persistence.Repositories.Service
                     {
                         model.Add(new RandomNumberFileUpload
                         {
-                            RandomNumber = (worksheet.Cells[row, 1].Value ?? string.Empty).ToString().Trim(),
+                            RandomNumber = Convert.ToInt32((worksheet.Cells[row, 1].Value ?? string.Empty).ToString().Trim()),
                             FileName = file.Name,
                             FilePath = file.DirectoryName,
                             Reference = reference
@@ -85,11 +85,72 @@ namespace FileUpload.Persistence.Repositories.Service
                     }
                 }
 
-                await _context.RandomNumberFileUpload.AddRangeAsync(model);
-                await _context.SaveChangesAsync();
+                var inMemoryList = new List<int>();
 
-                return new WebApiResponse { ResponseCode = AppResponseCodes.Success, Message = "File was successfully uploaded", StatusCode = ResponseCodes.Success };
+                foreach (var item in model)
+                {
+                    inMemoryList.Add(item.RandomNumber);
+                }
 
+                var evenNumberList = inMemoryList.Where(i => i % 2 == 0).ToList();
+
+                var oddNumberList = inMemoryList.Where(i => i % 2 != 0).ToList();
+
+                bool allAreEven = evenNumberList.All(x => x % 2 == 0);
+
+                bool allAreOdd = oddNumberList.All(x => x % 2 != 0);
+
+                var evenNumberData = String.Join(",", evenNumberList);
+
+                var oddNumberData = String.Join(",", oddNumberList);
+
+                var mode = evenNumberList.GroupBy(n => n).
+                OrderByDescending(g => g.Count()).
+                Select(g => g.Key).FirstOrDefault();
+
+                var modeNumberData = String.Join(",", mode);
+
+                double mean = oddNumberList.Average();
+
+                var statisticsModelList = new List<NumberStatistics>();
+
+                statisticsModelList.Add(new NumberStatistics
+                {
+                    CategoryOne = "Even Number",
+                    ResultOne = evenNumberData,
+                    CategoryTwo = "Mode",
+                    ResultTwo = modeNumberData
+                });
+                //var mean = even1.Average();
+
+                statisticsModelList.Add(new NumberStatistics
+                {
+                    CategoryOne = "Odd Number",
+                    ResultOne = oddNumberData,
+                    CategoryTwo = "Mean",
+                    ResultTwo = mean.ToString()
+                });
+
+                using (var transaction = await _context.Database.BeginTransactionAsync())
+                {
+                    try
+                    {
+                        await _context.RandomNumberFileUpload.AddRangeAsync(model);
+                        await _context.SaveChangesAsync();
+
+                        await _context.NumberStatistics.AddRangeAsync(statisticsModelList);
+                        await _context.SaveChangesAsync();
+
+                        await transaction.CommitAsync();
+
+                        return new WebApiResponse { ResponseCode = AppResponseCodes.Success, Message = "File was successfully uploaded", StatusCode = ResponseCodes.Success };
+                    }
+                    catch (Exception ex)
+                    {
+                        await transaction.RollbackAsync();
+                        return new WebApiResponse { ResponseCode = AppResponseCodes.InternalError, Message = "Internal error occured", StatusCode = ResponseCodes.InternalError };
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -99,18 +160,17 @@ namespace FileUpload.Persistence.Repositories.Service
 
         public async Task<IEnumerable<RandomNumberFileUploadViewModel>> GetFiles()
         {
-            var uploadedFiles = await _context.RandomNumberFileUpload.Take(3).ToListAsync();
-
+            var numbers = await _context.NumberStatistics.ToListAsync();
 
             IEnumerable<RandomNumberFileUploadViewModel> response = new List<RandomNumberFileUploadViewModel>();
 
-            response = uploadedFiles.Select(a => new RandomNumberFileUploadViewModel
+            response = numbers.Select(a => new RandomNumberFileUploadViewModel
             {
-                RandomNumber = a.RandomNumber,
-                Reference = a.Reference,
-                FilePath = a.FilePath,
-                FileName = a.FileName
-            }).ToList();           
+                CategoryOne = a.CategoryOne,
+                ResultOne = a.ResultOne,
+                CategoryTwo = a.CategoryTwo,
+                ResultTwo = a.ResultTwo
+            }).ToList();
 
             return response;
         }
@@ -126,8 +186,8 @@ namespace FileUpload.Persistence.Repositories.Service
 
                 return new RandomNumberFileUploadViewModel
                 {
-                    FileName = file.FileName,
-                    FilePath = file.FilePath
+                    //FileName = file.FileName,
+                    //FilePath = file.FilePath
                 };
 
             }
@@ -137,5 +197,32 @@ namespace FileUpload.Persistence.Repositories.Service
                 throw;
             }
         }
+
+        public async Task<IEnumerable<RandomNumberFileUploadViewModel>> GetNumbers()
+        {
+            try
+            {
+                var numbers = await _context.NumberStatistics.OrderBy(x=>x.DateEntered).ToListAsync();
+
+                IEnumerable<RandomNumberFileUploadViewModel> response = new List<RandomNumberFileUploadViewModel>();
+
+                response = numbers.Select(a => new RandomNumberFileUploadViewModel
+                {
+                    CategoryOne = a.CategoryOne,
+                    ResultOne = a.ResultOne,
+                    CategoryTwo = a.CategoryTwo,
+                    ResultTwo = a.ResultTwo
+                }).ToList();
+
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

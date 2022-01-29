@@ -4,14 +4,16 @@ using FileUpload.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FileUpload.Persistence.Migrations
 {
     [DbContext(typeof(FIleUploadDbContext))]
-    partial class FIleUploadDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220129202538_created-statistics-table")]
+    partial class createdstatisticstable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,19 +28,13 @@ namespace FileUpload.Persistence.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CategoryOne")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CategoryTwo")
+                    b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateEntered")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ResultOne")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ResultTwo")
+                    b.Property<string>("Result")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("NumberStatisticsId");

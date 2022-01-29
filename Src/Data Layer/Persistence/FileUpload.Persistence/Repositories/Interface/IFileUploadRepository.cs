@@ -14,5 +14,6 @@ namespace FileUpload.Persistence.Repositories.Interface
         Task<WebApiResponse> UploadFileAsync(IFormFile formFile);
         Task<IEnumerable<RandomNumberFileUploadViewModel>> GetFiles();
         Task<RandomNumberFileUploadViewModel> GetFile(string fileName);
+        Task<IEnumerable<RandomNumberFileUploadViewModel>> GetNumbers();
     }
 }

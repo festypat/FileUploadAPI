@@ -94,8 +94,8 @@ namespace FileUpload.ApplicationCore.ApiServices
 
                 var model = new RandomNumberFileUploadViewModel
                 {
-                    RandomNumber = fileUploadRequestDto.RandomNumber,
-                    Reference = Guid.NewGuid().ToString(),
+                    //RandomNumber = fileUploadRequestDto.RandomNumber,
+                    //Reference = Guid.NewGuid().ToString(),
                 };
 
                 await _randomFileUploadNumber.AddAsync(model);

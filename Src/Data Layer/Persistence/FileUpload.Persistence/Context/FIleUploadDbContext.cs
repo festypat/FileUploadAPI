@@ -14,5 +14,6 @@ namespace FileUpload.Persistence.Context
         { }
 
         public DbSet<RandomNumberFileUpload> RandomNumberFileUpload { get; set; }
+        public DbSet<NumberStatistics> NumberStatistics { get; set; }
     }
 }

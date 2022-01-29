@@ -31,7 +31,12 @@ namespace FileUpload.API.Controllers
 
         [HttpPost]
         [Route("excel-document")]
-        public async Task<IActionResult> RegisterUser() => Response(await _fileUploadRepository.UploadFileAsync(Request.Form.Files[0]).ConfigureAwait(false));
+        //public async Task<IActionResult> RegisterUser() => Response(await _fileUploadRepository.UploadFileAsync(Request.Form.Files[0]).ConfigureAwait(false));
+        public async Task<IActionResult> RegisterUser(IFormFile formFile) => Response(await _fileUploadRepository.UploadFileAsync(formFile).ConfigureAwait(false));
+
+        [HttpGet]
+        [Route("get-numbers")]
+        public async Task<IActionResult> GerNumbers() => Response(await _fileUploadRepository.GetNumbers().ConfigureAwait(false));
 
         [HttpGet]
         [Route("get-all-files")]
@@ -50,7 +55,8 @@ namespace FileUpload.API.Controllers
             if(getFile == default)
                 return NotFound();
 
-            string url = $"{getFile.FilePath}{@"\"}{getFile.FileName}"; 
+            //string url = $"{getFile.FilePath}{@"\"}{getFile.FileName}"; 
+            string url = ""; 
 
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), url);
             if (!System.IO.File.Exists(filePath))
