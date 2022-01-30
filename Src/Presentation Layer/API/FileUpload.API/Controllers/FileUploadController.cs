@@ -31,8 +31,8 @@ namespace FileUpload.API.Controllers
 
         [HttpPost]
         [Route("excel-document")]
-        //public async Task<IActionResult> RegisterUser() => Response(await _fileUploadRepository.UploadFileAsync(Request.Form.Files[0]).ConfigureAwait(false));
-        public async Task<IActionResult> RegisterUser(IFormFile formFile) => Response(await _fileUploadRepository.UploadFileAsync(formFile).ConfigureAwait(false));
+        public async Task<IActionResult> RegisterUser() => Response(await _fileUploadRepository.UploadFileAsync(Request.Form.Files[0]).ConfigureAwait(false));
+        //public async Task<IActionResult> RegisterUser(IFormFile formFile) => Response(await _fileUploadRepository.UploadFileAsync(formFile).ConfigureAwait(false));
 
         [HttpGet]
         [Route("get-numbers")]

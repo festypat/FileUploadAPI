@@ -108,9 +108,23 @@ namespace FileUpload.Persistence.Repositories.Service
                 OrderByDescending(g => g.Count()).
                 Select(g => g.Key).FirstOrDefault();
 
+                var divisibleBy3 = DivisibleNumber(3, inMemoryList);
+
+                var numbersDivisibleBy3 = String.Join(",", divisibleBy3);
+
+                var divisibleBy5 = DivisibleNumber(5, inMemoryList);
+
+                var numbersDivisibleBy5 = String.Join(",", divisibleBy5);
+
+                var divisibleBy7 = DivisibleNumber(7, inMemoryList);
+
+                var numbersDivisibleBy7 = String.Join(",", divisibleBy7);
+
                 var modeNumberData = String.Join(",", mode);
 
                 double mean = oddNumberList.Average();
+
+                var median = (inMemoryList[(inMemoryList.Count - 1) / 2] + inMemoryList[inMemoryList.Count / 2]) / 2;
 
                 var statisticsModelList = new List<NumberStatistics>();
 
@@ -129,6 +143,30 @@ namespace FileUpload.Persistence.Repositories.Service
                     ResultOne = oddNumberData,
                     CategoryTwo = "Mean",
                     ResultTwo = mean.ToString()
+                });
+
+                statisticsModelList.Add(new NumberStatistics
+                {
+                    CategoryOne = "Number Divisible By 3",
+                    ResultOne = numbersDivisibleBy3,
+                    CategoryTwo = "AVG",
+                    ResultTwo = Convert.ToString(divisibleBy3.Average())
+                });
+
+                statisticsModelList.Add(new NumberStatistics
+                {
+                    CategoryOne = "Number Divisible By 5",
+                    ResultOne = numbersDivisibleBy5,
+                    CategoryTwo = "Median",
+                    ResultTwo = Convert.ToString(median)
+                });
+
+                statisticsModelList.Add(new NumberStatistics
+                {
+                    CategoryOne = "Number Divisible By 7",
+                    ResultOne = numbersDivisibleBy7,
+                    CategoryTwo = "SUM",
+                    ResultTwo = Convert.ToString(divisibleBy7.Sum())
                 });
 
                 using (var transaction = await _context.Database.BeginTransactionAsync())
@@ -224,5 +262,11 @@ namespace FileUpload.Persistence.Repositories.Service
             }
         }
 
+        public IEnumerable<int> DivisibleNumber(int number, List<int> inMemoryList)
+        {
+            return from nn in inMemoryList.Select((Value, Index) => new { Value, Index })
+                     where (nn.Value % number == 0)
+                     select nn.Value;
+        }
     }
 }
